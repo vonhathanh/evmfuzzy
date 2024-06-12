@@ -5,11 +5,10 @@ use std::env;
 use evm::{evm_main, EvmArgs};
 
 #[derive(Parser)]
-#[command(author, version=env!("GIT_VERSION_INFO", "1.0.0"), about)]
+#[command(author, version=env!("GIT_VERSION_INFO"), about)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
-
 }
 
 #[derive(Subcommand, Debug)]
