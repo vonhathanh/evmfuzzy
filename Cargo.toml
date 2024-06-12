@@ -8,3 +8,8 @@ clap = { version = "4.5.6", features = ["derive", "cargo"] }
 libafl = "0.12.0"
 libafl_bolts = "0.12.0"
 revm = { version = "9.0.0", features = ["ethersdb"] }
+revm-primitives = { version = "4.0.0", features = [
+    "serde",
+    "memory_limit"
+    ] }
+hex = "0.4"
