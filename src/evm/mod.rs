@@ -1,10 +1,13 @@
 mod types;
 mod solution;
 mod producers;
+mod oracles;
+mod tokens;
 
 use std::{cell::RefCell, path::Path, rc::Rc};
 
 use clap::Parser;
+use oracles::erc20::IERC20OracleFlashloan;
 use producers::erc20::ERC20Producer;
 
 #[derive(Parser, Debug, Default)]
@@ -66,4 +69,6 @@ pub fn evm_main(mut args: EvmArgs) {
     solution::init_cli_args(target, work_dir);
 
     let erc20_producer = Rc::new(RefCell::new(ERC20Producer::new()));
+
+    let flashloan_oracle = Rc::new(RefCell::new(IERC20OracleFlashloan::new(erc20_producer.clone())));
 }
