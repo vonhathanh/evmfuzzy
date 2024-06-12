@@ -7,15 +7,17 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug executable 'rust_tutorial'",
-      "cargo": {
-        "args": ["build", "--bin=evmfuzzy", "--package=evmfuzzy"],
-        "filter": {
-          "name": "evmfuzzy",
-          "kind": "bin"
-        }
-      },
-      "cwd": "${workspaceFolder}"
+      "name": "Debug",
+      "program": "${workspaceFolder}/target/debug/evmfuzzy",
+      "args": [
+        "evm",
+        "-t",
+        "build/*"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "GIT_VERSION_INFO": "1.0.0"
+      }
     }
   ]
 }
