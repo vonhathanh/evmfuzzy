@@ -15,7 +15,6 @@
           "kind": "bin"
         }
       },
-      "args": ["evm", "--target", "polygon"],
       "cwd": "${workspaceFolder}"
     }
   ]
