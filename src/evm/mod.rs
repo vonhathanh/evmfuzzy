@@ -1,15 +1,9 @@
-mod oracles;
-mod producers;
 mod solution;
-mod tokens;
 mod types;
 
-use std::{cell::RefCell, path::Path, rc::Rc};
+use std::{path::Path};
 
 use clap::Parser;
-use oracles::erc20::IERC20OracleFlashloan;
-use producers::erc20::ERC20Producer;
-use revm_primitives::{bytes, ruint::aliases::B160, Bytecode, U256};
 
 #[derive(Parser, Debug, Default)]
 pub struct EvmArgs {
@@ -73,5 +67,5 @@ pub fn evm_main(mut args: EvmArgs) {
 
     solution::init_cli_args(target, work_dir);
 
-    let mut state: EVMFuzzState = FuzzState::new(args.seed);
+    // let mut state: EVMFuzzState = FuzzState::new(args.seed);
 }

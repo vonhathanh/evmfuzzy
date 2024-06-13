@@ -1,6 +1,4 @@
 pub mod evm;
-pub mod state;
-pub mod generic_vm;
 
 use clap::{Parser, Subcommand};
 use std::env;
