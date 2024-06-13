@@ -1,14 +1,15 @@
-mod types;
-mod solution;
-mod producers;
 mod oracles;
+mod producers;
+mod solution;
 mod tokens;
+mod types;
 
 use std::{cell::RefCell, path::Path, rc::Rc};
 
 use clap::Parser;
 use oracles::erc20::IERC20OracleFlashloan;
 use producers::erc20::ERC20Producer;
+use revm_primitives::{bytes, ruint::aliases::B160, Bytecode, U256};
 
 #[derive(Parser, Debug, Default)]
 pub struct EvmArgs {
@@ -22,6 +23,10 @@ pub struct EvmArgs {
     /// (Default: Automatically infer from target)
     #[arg(long)]
     target_type: Option<String>,
+
+    // random seed
+    #[arg(long, default_value = "12345678910")]
+    seed: u64,
 }
 
 enum EVMTargetType {
@@ -29,7 +34,7 @@ enum EVMTargetType {
     Glob,
     AnvilFork,
     Config,
-    Setup
+    Setup,
 }
 
 impl EVMTargetType {
@@ -40,7 +45,7 @@ impl EVMTargetType {
             "anvil_fork" => EVMTargetType::AnvilFork,
             "config" => EVMTargetType::Config,
             "setup" => EVMTargetType::Setup,
-            _ => panic!("Invalid target type")
+            _ => panic!("Invalid target type"),
         }
     }
 }
@@ -68,7 +73,5 @@ pub fn evm_main(mut args: EvmArgs) {
 
     solution::init_cli_args(target, work_dir);
 
-    let erc20_producer = Rc::new(RefCell::new(ERC20Producer::new()));
-
-    let flashloan_oracle = Rc::new(RefCell::new(IERC20OracleFlashloan::new(erc20_producer.clone())));
+    let mut state: EVMFuzzState = FuzzState::new(args.seed);
 }
