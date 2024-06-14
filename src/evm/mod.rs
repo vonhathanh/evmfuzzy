@@ -1,9 +1,12 @@
 mod solution;
 mod types;
 
-use std::{path::Path};
+use std::path::Path;
 
 use clap::Parser;
+use types::EVMFuzzState;
+
+use crate::state::FuzzState;
 
 #[derive(Parser, Debug, Default)]
 pub struct EvmArgs {
@@ -67,5 +70,5 @@ pub fn evm_main(mut args: EvmArgs) {
 
     solution::init_cli_args(target, work_dir);
 
-    // let mut state: EVMFuzzState = FuzzState::new(args.seed);
+    let mut state: EVMFuzzState = FuzzState::new(args.seed);
 }
