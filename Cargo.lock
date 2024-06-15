@@ -1054,14 +1054,19 @@ dependencies = [
 name = "evmfuzzy"
 version = "0.1.0"
 dependencies = [
+ "bytes",
  "clap",
+ "glob",
  "hex",
+ "itertools 0.10.5",
  "libafl",
  "libafl_bolts",
  "revm",
  "revm-primitives",
  "serde",
+ "serde_json",
  "serde_traitobject",
+ "tracing",
 ]
 
 [[package]]

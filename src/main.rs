@@ -2,6 +2,8 @@ pub mod evm;
 pub mod state;
 pub mod generic_vm;
 pub mod input;
+pub mod fuzzers;
+pub mod scheduler;
 
 use clap::{Parser, Subcommand};
 use std::env;

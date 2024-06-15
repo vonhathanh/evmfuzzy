@@ -1,12 +1,18 @@
-mod solution;
-mod types;
+pub mod solution;
+pub mod types;
+pub mod contract_utils;
+pub mod vm;
+pub mod config;
+pub mod host;
 
 use std::path::Path;
 
 use clap::Parser;
+use config::Config;
+use contract_utils::ContractLoader;
 use types::EVMFuzzState;
 
-use crate::state::FuzzState;
+use crate::{fuzzers::evm_fuzzer::evm_fuzzer, state::FuzzState};
 
 #[derive(Parser, Debug, Default)]
 pub struct EvmArgs {
@@ -71,4 +77,15 @@ pub fn evm_main(mut args: EvmArgs) {
     solution::init_cli_args(target, work_dir);
 
     let mut state: EVMFuzzState = FuzzState::new(args.seed);
+
+    let mut contract_loader = match target_type {
+        EVMTargetType::Glob => ContractLoader::from_glob(args.target.as_str()),
+        _ => ContractLoader::from_glob("")
+    };
+    
+    let config = Config {
+        contract_loader: contract_loader,
+        work_dir: args.work_dir.clone(),
+    };
+    evm_fuzzer(config, &mut state);
 }
