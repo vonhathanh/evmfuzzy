@@ -4,6 +4,7 @@ pub mod contract_utils;
 pub mod vm;
 pub mod config;
 pub mod host;
+pub mod abi;
 
 use std::path::Path;
 
