@@ -1,30 +1,12 @@
 [package]
 name = "evmfuzzy"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
+build = "src/build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dev-dependencies]
+
+[features]
 
 [dependencies]
-clap = { version = "4.5.6", features = ["derive", "cargo"] }
-
-libafl = "0.12.0"
-libafl_bolts = "0.12.0"
-
-revm = { version = "9.0.0", features = ["ethersdb"] }
-revm-primitives = { version = "4.0.0", features = [
-    "serde",
-    "memory_limit",
-    ] }
-
-hex = "0.4"
-
-serde = "1.0.203"
-serde_traitobject = "0.2.8"
-serde_json = "1.0.73"
-
-bytes = { version = "1.2.1", features = ["serde"] }
-
-glob = "0.3.0"
-
-tracing = "0.1"
-
-itertools = "0.10.2"
