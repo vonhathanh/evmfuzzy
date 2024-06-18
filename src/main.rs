@@ -1,6 +1,8 @@
+mod evm;
+mod cache;
 
 use clap::{Parser, Subcommand};
-use std::env;
+use evm::{evm_main, EvmArgs};
 
 #[derive(Parser)]
 #[command(author, version=env!("GIT_VERSION_INFO"), about)]

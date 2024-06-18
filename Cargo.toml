@@ -8,5 +8,21 @@ build = "src/build.rs"
 [dev-dependencies]
 
 [features]
+use_presets = []
 
 [dependencies]
+clap = { version = "4.4.4", features = ["derive"] }
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+serde_json = "1.0.73"
+
+revm-primitives = { git = "https://github.com/fuzzland/revm", rev = "1dead51", features = [
+    "no_gas_measuring",
+    "serde",
+    "memory_limit",
+] }
+
+retry = "2.0.0"
+
+# error handling
+anyhow = "1.0"
+tracing = "0.1"
