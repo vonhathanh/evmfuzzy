@@ -1,12 +1,4 @@
 mod evm;
-mod cache;
-mod oracle;
-mod input;
-mod generic_vm;
-mod state;
-mod state_input;
-mod tracer;
-mod indexed_corpus;
 
 use clap::{Parser, Subcommand};
 use evm::{evm_main, EvmArgs};
